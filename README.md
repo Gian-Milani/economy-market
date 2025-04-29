@@ -1,50 +1,51 @@
-# Welcome to your Expo app 👋
+# 🛒 economy-market
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo mobile para **controle de compras de supermercado**, com o objetivo de ajudar os usuários a registrarem os produtos durante a compra, acompanharem os preços e visualizarem economias ao longo do tempo.
 
-## Get started
+---
 
-1. Install dependencies
+## 📱 Funcionalidades
 
-   ```bash
-   npm install
-   ```
+- Registro manual de produtos durante a compra
+- Histórico de compras anteriores
+- Comparativo de preços por produto
+- Destaque de economia por item
+- Interface amigável e objetiva
 
-2. Start the app
+---
 
-   ```bash
-    npx expo start
-   ```
+## 📸 Preview
 
-In the output, you'll find options to open the app in a
+> *Adicione imagens aqui quando o app estiver em funcionamento.*
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+<p align="center">
+  <img src="assets/screens/login.png" width="250" />
+  <img src="assets/screens/home.png" width="250" />
+</p>
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 🚀 Tecnologias
 
-When you're ready, run:
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Styled-Components](https://styled-components.com/)
+- [Google Fonts (Poppins)](https://fonts.google.com/specimen/Poppins)
+
+---
+
+## ⚙️ Instalação
 
 ```bash
-npm run reset-project
-```
+# Clone o repositório
+git clone https://github.com/seu-usuario/economy-market.git
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+# Acesse a pasta do projeto
+cd economy-market
 
-## Learn more
+# Instale as dependências
+npm install
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+# Rode o projeto
+npx expo start
