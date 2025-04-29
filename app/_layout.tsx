@@ -1,39 +1,51 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import {
+  Poppins_400Regular,
+  Poppins_600SemiBold,
+  useFonts,
+} from '@expo-google-fonts/poppins'
+import { ThemeProvider } from 'styled-components/native'
+import theme from '../src/theme'
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Loading } from '@/src/components/Loading'
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+import { Home } from '@/src/screens/Home'
+import { Login } from '@/src/screens/Login'
+import { Profile } from '@/src/screens/Profile'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { Stack } from 'expo-router'
+import { StatusBar } from 'react-native'
+
+const StackNav = createNativeStackNavigator()
+const TabNav = createBottomTabNavigator()
+
+function TabRoutes() {
+  return (
+    <TabNav.Navigator>
+      <TabNav.Screen name='Home' component={Home} />
+      <TabNav.Screen name='Profile' component={Profile} />
+    </TabNav.Navigator>
+  )
+}
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
+  const [fontsLoaded] = useFonts({ Poppins_400Regular, Poppins_600SemiBold })
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
+    <ThemeProvider theme={theme}>
+      <StatusBar
+        barStyle='light-content'
+        backgroundColor='transparent'
+        translucent
+      />
+      {fontsLoaded ? (
+        <Stack>
+          <Stack.Screen name='index' options={{ headerShown: false }} />
+        </Stack>
+      ) : (
+        <Loading />
+      )}
     </ThemeProvider>
-  );
+  )
 }
