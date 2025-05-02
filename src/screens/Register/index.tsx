@@ -1,6 +1,7 @@
 import { Button } from '@/src/components/Button'
 import { Highlight } from '@/src/components/Highlight'
 import { Input } from '@/src/components/Input'
+import { router } from 'expo-router'
 import React from 'react'
 import { Container, Header, Icon } from './styles'
 
@@ -21,7 +22,12 @@ export function Register() {
       <Input placeholder='E-mail' keyboardType='email-address' />
       <Input placeholder='Senha' secureTextEntry />
 
-      <Button activeOpacity={0.8} title='Registar' icon='edit' />
+      <Button
+        activeOpacity={0.8}
+        title='Registar'
+        icon='edit'
+        onPress={() => router.replace('/')}
+      />
     </Container>
   )
 }

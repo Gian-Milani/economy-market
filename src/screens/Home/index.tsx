@@ -3,7 +3,7 @@ import { Header } from '@/src/components/Header'
 import { Highlight } from '@/src/components/Highlight'
 import { ListEmpty } from '@/src/components/ListEmpty'
 import { PurchaseCard } from '@/src/components/PurchaseCard'
-import { useNavigation } from '@react-navigation/native'
+import { useRouter } from 'expo-router'
 import { useState } from 'react'
 import { FlatList } from 'react-native'
 import { Container } from './styles'
@@ -26,10 +26,10 @@ export function Home() {
 
   // const [purchases, setPurchases] = useState<PurchasesProps[]>([])
 
-  const navigation = useNavigation()
+  const router = useRouter()
 
   function handleNewPurchase() {
-    navigation.navigate('new')
+    router.push('/(tabs)/home/new-purchase')
   }
 
   return (
