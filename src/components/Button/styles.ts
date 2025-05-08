@@ -22,9 +22,13 @@ export const Container = styled(TouchableOpacity)<Props>`
       ? theme.COLORS.GREEN_500
       : type === 'SECONDARY'
         ? theme.COLORS.RED_DARK
-        : theme.COLORS.GRAY_500};
+        : type === 'TERTIARY'
+          ? theme.COLORS.GRAY_600
+          : theme.COLORS.GRAY_500};
 
   border-radius: 6px;
+  border: 1px solid ${({ theme, type }) =>
+    type === 'TERTIARY' ? theme.COLORS.GRAY_300 : theme.COLORS.GRAY_600};
   
   justify-content: center;
   align-items: center;

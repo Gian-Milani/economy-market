@@ -2,35 +2,47 @@ import { Button } from '@/src/components/Button'
 import { Header } from '@/src/components/Header'
 import { Highlight } from '@/src/components/Highlight'
 import { ListEmpty } from '@/src/components/ListEmpty'
+import { Loading } from '@/src/components/Loading'
 import { PurchaseCard } from '@/src/components/PurchaseCard'
+import { PurchaseStorageDTO } from '@/src/storage/purchase/PurchaseStorageDTO'
+import { purchaseGetAll } from '@/src/storage/purchase/purchaseGetAll'
 import { useRouter } from 'expo-router'
-import { useState } from 'react'
-import { FlatList } from 'react-native'
+import { useCallback, useEffect, useState } from 'react'
+import { Alert, FlatList } from 'react-native'
 import { Container } from './styles'
 
-interface PurchasesProps {
-  id: string
-  title: string
-  date: string
-}
-
 export function Home() {
-  const [purchases, setPurchases] = useState<PurchasesProps[]>([
-    { id: '1', title: 'Compra do mês - Carrefour', date: '25/04/2025' },
-    {
-      id: '2',
-      title: 'Feira de sábado - Mercado Central Teste 123',
-      date: '10/12/2024',
-    },
-  ])
-
-  // const [purchases, setPurchases] = useState<PurchasesProps[]>([])
+  const [purchases, setPurchases] = useState<PurchaseStorageDTO[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const router = useRouter()
 
   function handleNewPurchase() {
-    router.push('/(tabs)/home/new-purchase')
+    router.push('/(modals)/new-purchase')
   }
+
+  async function fetchPurchases() {
+    try {
+      const data = await purchaseGetAll()
+      setPurchases(data)
+    } catch (error) {
+      Alert.alert('Erro inesperado', 'Erro ao carregar suas últimas compras.')
+    } finally {
+    }
+  }
+
+  function handleOpenPurchase(purchase: string) {
+    router.push({
+      pathname: '/(modals)/products',
+      params: { purchase },
+    })
+  }
+
+  useEffect(
+    useCallback(() => {
+      fetchPurchases()
+    }, [])
+  )
 
   return (
     <Container>
@@ -42,7 +54,11 @@ export function Home() {
         data={purchases}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <PurchaseCard title={item.title} date={item.date} />
+          <PurchaseCard
+            title={item.title}
+            date={item.date}
+            onPress={() => handleOpenPurchase(item.title)}
+          />
         )}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flex: 1 }}

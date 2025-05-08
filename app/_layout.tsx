@@ -22,7 +22,11 @@ export default function RootLayout() {
         translucent
       />
       {fontsLoaded ? (
-        <Stack screenOptions={{ headerShown: false }} />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name='(tabs)' />
+
+          <Stack.Screen name='(modals)' options={{ presentation: 'modal' }} />
+        </Stack>
       ) : (
         <Loading />
       )}

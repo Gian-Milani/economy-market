@@ -1,3 +1,4 @@
+import { router, useNavigation } from 'expo-router'
 import { BackButton, BackIcon, BagIcon, Container } from './styles'
 
 type Props = {
@@ -5,10 +6,12 @@ type Props = {
 }
 
 export function Header({ showBackButton = false }: Props) {
+  const navigation = useNavigation()
+
   return (
     <Container>
       {showBackButton && (
-        <BackButton>
+        <BackButton onPress={navigation.goBack}>
           <BackIcon />
         </BackButton>
       )}

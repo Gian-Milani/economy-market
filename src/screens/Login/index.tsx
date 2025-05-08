@@ -31,7 +31,7 @@ export function Login() {
         activeOpacity={0.8}
         title='Registrar'
         icon='edit'
-        onPress={() => router.push('/register')}
+        onPress={() => router.push('/(modals)/register')}
       />
     </Container>
   )
